@@ -18,34 +18,36 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\"username\": \"userA\"}"
+          "raw": "{\"username\": \"userA\", \"password\": \"password\"}"
         },
         "url": {
-          "raw": "http://localhost:3000/user/create",
+          "raw": "http://localhost:3000/create",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
-            "admin",
-            "cryptocurrency"
+            "create"
           ]
         }
       },
       "response": [
         {
           "user": {
-            "id": 1,
-            "username": "userA",
-            "updatedAt": "2024-06-22T05:17:09.454Z",
-            "createdAt": "2024-06-22T05:17:09.454Z"
+            "role": "user",
+            "id": 8,
+            "username": "user1",
+            "password": "$2a$10$J1v6CHjbKWgjYG4CEPzJ2uxdpiUB/VrbpGZw3t3whCZzfKCqrHTDa",
+            "updatedAt": "2024-06-22T09:30:26.611Z",
+            "createdAt": "2024-06-22T09:30:26.611Z"
           },
           "wallet": {
             "balance": 0,
-            "id": 3,
-            "updatedAt": "2024-06-22T05:17:09.475Z",
-            "createdAt": "2024-06-22T05:17:09.475Z"
+            "id": 4,
+            "CryptocurrencyId": 1,
+            "updatedAt": "2024-06-22T09:30:26.692Z",
+            "createdAt": "2024-06-22T09:30:26.692Z"
           }
         }
       ]

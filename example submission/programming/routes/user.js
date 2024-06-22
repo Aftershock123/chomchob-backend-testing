@@ -3,22 +3,6 @@ const { sequelize, User, Wallet, Transaction, Cryptocurrency, ExchangeRate } = r
 
 const router = express.Router();
 
-//create user and wallet
-router.post('/create', async (req, res) => {
-  const { username } = req.body;
-  try {
-    const newUser = await User.create({ username });
-
-    const newWallet = await Wallet.create({ CryptocurrencyId: 1 });
-    
-    await newUser.addWallet(newWallet);
-
-    res.status(201).json({ user: newUser, wallet: newWallet });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 
 // Transfer same cryptocurrency between users
 router.post('/transfer', async (req, res) => {

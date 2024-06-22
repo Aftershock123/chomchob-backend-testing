@@ -11,6 +11,21 @@ module.exports = (sequelize, DataTypes) => {
         unique: true
       }
     });
+
+    sequelize.sync().then(async () => {
+      const cryptocurrency = await Cryptocurrency.findOrCreate({
+        where: { id: 1 },
+        defaults: {
+          name: 'Bitcoin',
+          symbol: 'BTC'
+        }
+      });
+  
+      if (cryptocurrency) {
+        console.log('Cryptocurrency created successfully.');
+      }
+    });
+
     return Cryptocurrency;
   };
   
