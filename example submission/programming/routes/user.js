@@ -33,15 +33,15 @@ router.post('/transfer', async (req, res) => {
 
 // Transfer different cryptocurrencies between users
 router.post('/transfer/exchange', async (req, res) => {
-  const { senderId, receiverId, fromCryptoSymbol, toCryptoSymbol, amount } = req.body;
+  const {receiverId, toCryptoSymbol, amount } = req.body;
   try {
-    const fromCrypto = await Cryptocurrency.findOne({ where: { symbol: fromCryptoSymbol } });
+    const senderId = req.user.id;
+    const CryptocurrencyIdBysenderId = await Wallet.findOne({ where: { UserId: senderId } }).then((wallet) => wallet.CryptocurrencyId); 
     const toCrypto = await Cryptocurrency.findOne({ where: { symbol: toCryptoSymbol } });
-    const senderWallet = await Wallet.findOne({ where: { UserId: senderId, CryptocurrencyId: fromCrypto.id } });
+    const senderWallet = await Wallet.findOne({ where: { UserId: senderId, CryptocurrencyId: CryptocurrencyIdBysenderId } });
     const receiverWallet = await Wallet.findOne({ where: { UserId: receiverId, CryptocurrencyId: toCrypto.id } });
 
-    const exchangeRate = await ExchangeRate.findOne({ where: { CryptocurrencyId: fromCrypto.id, targetSymbol: toCryptoSymbol } });
-
+    const exchangeRate = await ExchangeRate.findOne({ where: { CryptocurrencyId: CryptocurrencyIdBysenderId, targetSymbol: toCryptoSymbol } });
     if (!exchangeRate) {
       return res.status(400).json({ error: 'Exchange rate not found' });
     }

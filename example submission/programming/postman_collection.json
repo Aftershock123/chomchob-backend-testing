@@ -305,11 +305,9 @@
         "body": {
           "mode": "raw",
           "raw": {
-            "senderId":18,
             "receiverId": 11,
-            "fromCryptoSymbol":"ETH",
             "toCryptoSymbol":"BTC",
-            "amount":10
+            "amount":100
           }
         },
         "url": {
