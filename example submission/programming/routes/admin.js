@@ -1,5 +1,5 @@
 const express = require('express');
-const { User, Wallet, Cryptocurrency, ExchangeRate, Transaction } = require('../models');
+const { Wallet, Cryptocurrency, ExchangeRate } = require('../models');
 
 const router = express.Router();
 
@@ -31,7 +31,7 @@ router.post('/balance', async (req, res) => {
 router.get('/total-balance', async (req, res) => {
   try {
     const wallets = await Wallet.findAll();
-    const totalBalance = wallets.reduce((acc, wallet) => acc + wallet.balance, 0);
+    const totalBalance = wallets.reduce((item, wallet) => item + wallet.balance, 0);
     res.status(200).json({ totalBalance });
   } catch (error) {
     res.status(500).json({ error: error.message });

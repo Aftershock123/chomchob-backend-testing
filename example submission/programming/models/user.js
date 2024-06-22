@@ -1,5 +1,9 @@
 const bcrypt = require('bcryptjs');
 
+function generateRandomUid() {
+  return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+}
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
@@ -14,6 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.ENUM('admin', 'user'),
       defaultValue: 'user'
+    },
+    Uid: {
+      type: DataTypes.STRING,
+      unique: true 
+    }
+  }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        user.Uid = generateRandomUid();
+      }
     }
   });
 
@@ -23,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
       defaults: {
         username: 'admin',
         password: await bcrypt.hash('admin', 10),
-        role: 'admin'
+        role: 'admin',
+        Uid: generateRandomUid() 
       }
     });
 
@@ -33,8 +48,6 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.prototype.validPassword = async function (password) {
-    console.log("1",this.password);
-    console.log("2",password);
     return await bcrypt.compare(password, this.password);
   };
 

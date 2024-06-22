@@ -9,15 +9,11 @@ const checkRole = (role) => {
     }
 
     try {
-      // Verify token
-      const decoded = jwt.verify(token, 'your_secret_key'); // Replace with your actual secret key
+      const decoded = jwt.verify(token, 'your_secret_key'); 
 
-      // Check if user has the required role
       if (decoded.role !== role) {
         return res.status(403).json({ error: 'Access denied, insufficient permissions' });
       }
-
-      // Attach decoded user info to request object
       req.user = decoded;
       next();
     } catch (error) {

@@ -1,16 +1,21 @@
 const express = require('express');
-const { sequelize, User, Wallet, Transaction, Cryptocurrency, ExchangeRate } = require('../models');
+const { Wallet, Transaction, Cryptocurrency, ExchangeRate, User } = require('../models');
 
 const router = express.Router();
 
 
 // Transfer same cryptocurrency between users
 router.post('/transfer', async (req, res) => {
-  const { senderId, receiverId, cryptoSymbol, amount } = req.body;
+  const {  receiverId, cryptoSymbol, amount } = req.body;
   try {
+    const senderId = req.user.id;
+    const receiver = await User.findOne({ where: { Uid: receiverId } });
+    const UserReceiverId = receiver.id;
+    const CryptocurrencyIdBysenderId = await Wallet.findOne({ where: { UserId: senderId } }).then((wallet) => wallet.CryptocurrencyId); 
+
     const crypto = await Cryptocurrency.findOne({ where: { symbol: cryptoSymbol } });
-    const senderWallet = await Wallet.findOne({ where: { UserId: senderId, CryptocurrencyId: crypto.id } });
-    const receiverWallet = await Wallet.findOne({ where: { UserId: receiverId, CryptocurrencyId: crypto.id } });
+    const senderWallet = await Wallet.findOne({ where: { UserId: senderId, CryptocurrencyId: CryptocurrencyIdBysenderId } });
+    const receiverWallet = await Wallet.findOne({ where: { UserId: UserReceiverId, CryptocurrencyId: crypto.id } });
 
     if (senderWallet.balance < amount) {
       return res.status(400).json({ error: 'Insufficient balance' });
@@ -36,10 +41,12 @@ router.post('/transfer/exchange', async (req, res) => {
   const {receiverId, toCryptoSymbol, amount } = req.body;
   try {
     const senderId = req.user.id;
+    const receiver = await User.findOne({ where: { Uid: receiverId } });
+    const UserReceiverId = receiver.id;
     const CryptocurrencyIdBysenderId = await Wallet.findOne({ where: { UserId: senderId } }).then((wallet) => wallet.CryptocurrencyId); 
     const toCrypto = await Cryptocurrency.findOne({ where: { symbol: toCryptoSymbol } });
     const senderWallet = await Wallet.findOne({ where: { UserId: senderId, CryptocurrencyId: CryptocurrencyIdBysenderId } });
-    const receiverWallet = await Wallet.findOne({ where: { UserId: receiverId, CryptocurrencyId: toCrypto.id } });
+    const receiverWallet = await Wallet.findOne({ where: { UserId: UserReceiverId, CryptocurrencyId: toCrypto.id } });
 
     const exchangeRate = await ExchangeRate.findOne({ where: { CryptocurrencyId: CryptocurrencyIdBysenderId, targetSymbol: toCryptoSymbol } });
     if (!exchangeRate) {
