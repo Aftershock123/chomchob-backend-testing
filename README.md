@@ -28,10 +28,17 @@ This test contain with __2 part.__
   **Requirement**
 
   - Admin can increase and decrease user cryptocurrency balance.
-  - Admin can see all total balance of all cryptocurrency.
-  - Admin can add other cryptocurrency such XRP, EOS, XLM to wallet.
-  - Admin can manage exchange rate between cryptocurrency.
-  - User can transfer same cryptocurrency to other.
+    > http://localhost:3000/admin/balance
+  - Admin can see all total balance of all cryptocurrency. 
+    > http://localhost:3000/admin/total-balance
+  - Admin can add other cryptocurrency such XRP, EOS, XLM to wallet. 
+    > http://localhost:3000/admin/cryptocurrency
+  - Admin can manage exchange rate between cryptocurrency. 
+    > http://localhost:3000/admin/exchange-rate
+  - User can transfer same cryptocurrency to other. 
+    > Transfer Cryptocurrency http://localhost:3000/user/transfer
+ 
+    > Transfer with Exchange http://localhost:3000/user/transfer/exchange
   > Example
   >
   > UserA transfer 10 ETH to UserB so UserB will recieve 10 ETH
