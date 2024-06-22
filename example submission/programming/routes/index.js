@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
   });  
 
 router.post('/create', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, CryptocurrencyId } = req.body;
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -49,7 +49,7 @@ router.post('/create', async (req, res) => {
         password: hashedPassword,
       });
   
-      const newWallet = await Wallet.create({ CryptocurrencyId: 1 });
+      const newWallet = await Wallet.create({ CryptocurrencyId: CryptocurrencyId ? CryptocurrencyId : 1  });
       
       await newUser.addWallet(newWallet);
   

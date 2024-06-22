@@ -18,16 +18,28 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\"username\": \"userA\", \"password\": \"password\"}"
+          
+          "raw1": {
+            "username":"user3",
+            "password":"test3"
+          },
+          "description": "หากไม่กรอก CryptocurrencyId จะเลือก CryptocurrencyId = 1",
+
+          "raw2": {
+            "username":"user3",
+            "password":"test3",
+            "CryptocurrencyId":2 
+          }            
         },
         "url": {
-          "raw": "http://localhost:3000/create",
+          "raw": "http://localhost:3000/api/create",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
             "create"
           ]
         }
@@ -36,19 +48,55 @@
         {
           "user": {
             "role": "user",
-            "id": 8,
-            "username": "user1",
-            "password": "$2a$10$J1v6CHjbKWgjYG4CEPzJ2uxdpiUB/VrbpGZw3t3whCZzfKCqrHTDa",
-            "updatedAt": "2024-06-22T09:30:26.611Z",
-            "createdAt": "2024-06-22T09:30:26.611Z"
+            "id": 12,
+            "username": "user3",
+            "password": "$2a$10$G8RA8ijDQy2n2NWtKeDXC.Df3uv3FXWrbftllzP3dyv5jAhrfS6mO",
+            "updatedAt": "2024-06-22T10:28:46.204Z",
+            "createdAt": "2024-06-22T10:28:46.204Z"
           },
           "wallet": {
             "balance": 0,
-            "id": 4,
+            "id": 3,
             "CryptocurrencyId": 1,
-            "updatedAt": "2024-06-22T09:30:26.692Z",
-            "createdAt": "2024-06-22T09:30:26.692Z"
+            "updatedAt": "2024-06-22T10:28:46.224Z",
+            "createdAt": "2024-06-22T10:28:46.224Z"
           }
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": {
+            "username":"user3",
+            "password":"test3"
+          }          
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": [
+        {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoidXNlcjMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxOTA1MjI1OSwiZXhwIjoxNzE5MDU1ODU5fQ.isrAzq7CwPaF715_rZd0U3URu8BFeiLUYHRbX-t8qVo"
         }
       ]
     },
@@ -58,28 +106,38 @@
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
-            "value": "application/json"
+            "key": "Authorization",
+            "value": "admin_token"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Bitcoin\",\n  \"symbol\": \"BTC\"\n}"
+          "raw": {
+            "name":"Ethereum",
+            "symbol": "ETH"
+          }
         },
         "url": {
-          "raw": "http://localhost:3000/admin/cryptocurrency",
+          "raw": "http://localhost:3000/api/admin/cryptocurrency",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
             "admin",
             "cryptocurrency"
           ]
         }
       },
-      "response": []
+      "response": {
+        "id": 2,
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "updatedAt": "2024-06-22T10:36:12.950Z",
+        "createdAt": "2024-06-22T10:36:12.950Z"
+      }
     },
     {
       "name": "Update User Balance",
@@ -87,135 +145,191 @@
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
-            "value": "application/json"
+            "key": "Authorization",
+            "value":"admin_token"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userId\": 1,\n  \"cryptoId\": 1,\n  \"amount\": 100.5\n}"
+          "raw": {
+            "userId":18,
+            "cryptoId":2,
+            "amount":100
+          }
         },
         "url": {
-          "raw": "http://localhost:3000/admin/balance",
+          "raw": "http://localhost:3000/api/admin/balance",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
             "admin",
             "balance"
           ]
         }
       },
-      "response": []
+      "response":{
+        "id": 4,
+        "balance": 190,
+        "createdAt": "2024-06-22T11:08:53.000Z",
+        "updatedAt": "2024-06-22T11:44:43.478Z",
+        "UserId": 18,
+        "CryptocurrencyId": 2
+      }
     },
     {
       "name": "Get Total Balance",
       "request": {
         "method": "GET",
-        "url": {
-          "raw": "http://localhost:3000/admin/total-balance",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "admin",
-            "total-balance"
-          ]
-        },
-        "response": []
-      }
-    },
-    {
-      "name": "Manage Exchange Rate",
-      "request": {
-        "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
-            "value": "application/json"
+            "key": "Authorization",
+            "value":"admin_token"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"cryptoId\": 1,\n  \"targetSymbol\": \"ETH\",\n  \"rate\": 0.05\n}"
+          "raw": {
+
+          }
         },
         "url": {
-          "raw": "http://localhost:3000/admin/exchange-rate",
+          "raw": "http://localhost:3000/api/admin/total-balance",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
+            "admin",
+            "total-balance"
+          ]
+        }
+      },
+      "response":{
+        "totalBalance": 100.5
+      }
+    },
+    {
+      "name": " Create exchange-rate",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value":"admin_token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": {
+            "cryptoId":1,
+            "targetSymbol": "ETH",
+            "rate":"0.5"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/admin/exchange-rate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
             "admin",
             "exchange-rate"
           ]
         }
       },
-      "response": []
+      "response": {
+        "id": 1,
+        "CryptocurrencyId": 1,
+        "targetSymbol": "ETH",
+        "rate": "0.5",
+        "updatedAt": "2024-06-22T10:42:08.072Z",
+        "createdAt": "2024-06-22T10:42:08.072Z"
+      }
     },
     {
-      "name": "Transfer Cryptocurrency",
+      "name": " Transfer same cryptocurrency between users",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
-            "value": "application/json"
+            "key": "Authorization",
+            "value": "user_token"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"senderId\": 1,\n  \"receiverId\": 2,\n  \"cryptoSymbol\": \"BTC\",\n  \"amount\": 10\n}"
+          "raw":{
+            "senderId":10,
+            "receiverId": 11,
+            "cryptoSymbol":"BTC",
+            "amount":"100"
+          }
         },
         "url": {
-          "raw": "http://localhost:3000/user/transfer",
+          "raw": "http://localhost:3000/api/user/transfer",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
             "user",
             "transfer"
           ]
+        },
+        "response": {
+          "message": "Transfer successful"
         }
-      },
-      "response": []
+      }
     },
     {
-      "name": "Transfer with Exchange",
+      "name": "Transfer different cryptocurrencies between users",
       "request": {
         "method": "POST",
         "header": [
           {
-            "key": "Content-Type",
-            "value": "application/json"
+            "key": "Authorization",
+            "value": "user_token"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"senderId\": 1,\n  \"receiverId\": 3,\n  \"fromCryptoSymbol\": \"XRP\",\n  \"toCryptoSymbol\": \"BTC\",\n  \"amount\": 10\n}"
+          "raw": {
+            "senderId":18,
+            "receiverId": 11,
+            "fromCryptoSymbol":"ETH",
+            "toCryptoSymbol":"BTC",
+            "amount":10
+          }
         },
         "url": {
-          "raw": "http://localhost:3000/user/transfer/exchange",
+          "raw": "http://localhost:3000/api/user/transfer/exchange",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
+            "api",
             "user",
             "transfer",
             "exchange"
           ]
         }
       },
-      "response": []
-    }
+      "response": {
+        "message": "Exchange transfer successful"
+      }
+    }   
   ]
 }
