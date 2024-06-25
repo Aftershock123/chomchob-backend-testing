@@ -1,21 +1,33 @@
-module.exports = (sequelize, DataTypes) => {
-    const Promotion = sequelize.define('Promotion', {
-      discountPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      startDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      endDate: {
-        type: DataTypes.DATE,
-        allowNull: false
+module.exports = (sequelize,Sequelize) => {
+  const Promotion = sequelize.define('Promotion', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    itemId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'Items',
+        key: 'id'
       }
-    });
-    Promotion.associate = models => {
-      Promotion.belongsTo(models.Item, { foreignKey: 'itemId' });
-    };
+    },
+    startDate:{ 
+      type:Sequelize.DATE,
+      allowNull: false
+
+    },
+
+    endDate:{
+      type: Sequelize.DATE,
+      allowNull: false
+
+    },
+    discountedPrice: {
+      type:Sequelize.FLOAT,
+      allowNull: false
+    }
+  });
     return Promotion;
   };
   

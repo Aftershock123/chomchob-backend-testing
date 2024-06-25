@@ -1,9 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('wallet_db', 'root', '1234', {
-  host: 'localhost',
-  port: 3308,
-  dialect: 'mariadb',
+require('dotenv').config();
+const sequelize = new Sequelize(process.env.DB_Name, process.env.DB_User,  process.env.DB_Password, {
+  host: process.env.DB_Host ,
+  port: process.env.DB_Port ,
+  dialect: process.env.DB_Tool,
   dialectOptions: {
     allowPublicKeyRetrieval: true
   }

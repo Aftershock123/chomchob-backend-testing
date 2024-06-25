@@ -20,9 +20,19 @@ module.exports = (sequelize, DataTypes) => {
           symbol: 'BTC'
         }
       });
+      const ethereumcurrency = await Cryptocurrency.findOrCreate({
+        where: { id: 2 },
+        defaults: {
+          name: 'Ethereum',
+          symbol: 'ETH'
+        }
+      });
   
       if (cryptocurrency) {
         console.log('Cryptocurrency created successfully.');
+      }
+      if (ethereumcurrency) {
+        console.log('Ethereumcurrency created successfully.');
       }
     });
 

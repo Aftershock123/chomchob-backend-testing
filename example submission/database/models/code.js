@@ -1,18 +1,22 @@
-module.exports = (sequelize, DataTypes) => {
-    const Code = sequelize.define('Code', {
-      code: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
-      saleId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+module.exports = (sequelize,Sequelize) => {
+  const Code = sequelize.define('Code', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    purchaseId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'Purchases',
+        key: 'id'
       }
-    });
-    Code.associate = models => {
-      Code.belongsTo(models.Sale, { foreignKey: 'saleId' });
-    };
+    },
+    code:{ 
+      type: Sequelize.STRING,
+      allowNull: false
+    } 
+  });
     return Code;
   };
   

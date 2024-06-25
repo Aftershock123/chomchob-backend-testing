@@ -7,7 +7,109 @@
   },
   "item": [
     {
-      "name": "Create User And Wallet",
+      "name": "Create User And Wallet user2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": {
+            "username":"user2",
+            "password":"test2"
+          }          
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "create"
+          ]
+        }
+      },
+      "response": [
+        {
+          "user": {
+            "role": "user",
+            "id": 2,
+            "username": "user2",
+            "password": "$2a$10$1sKdvFxlZ8wXCaP9X0btW.Er0mz.btOeWz4q4xNwf0/2/LcGTbU3S",
+            "updatedAt": "2024-06-25T18:10:45.469Z",
+            "createdAt": "2024-06-25T18:10:45.469Z",
+            "Uid": "3763552684"
+          },
+          "wallet": {
+            "balance": 0,
+            "id": 1,
+            "CryptocurrencyId": 1,
+            "updatedAt": "2024-06-25T18:10:45.481Z",
+            "createdAt": "2024-06-25T18:10:45.481Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create User And Wallet user2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": {
+            "username":"user3",
+            "password":"test3"
+          }          
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "create"
+          ]
+        }
+      },
+      "response": [
+        {
+          "user": {
+            "role": "user",
+            "id": 3,
+            "username": "user3",
+            "password": "$2a$10$fhc..IWKv54g7oD8A7JSdO/RytJxVIV9fDFzlx3Sba2nVgOA06g/O",
+            "updatedAt": "2024-06-25T18:11:12.665Z",
+            "createdAt": "2024-06-25T18:11:12.665Z",
+            "Uid": "5914862811"
+          },
+          "wallet": {
+            "balance": 0,
+            "id": 2,
+            "CryptocurrencyId": 1,
+            "updatedAt": "2024-06-25T18:11:12.684Z",
+            "createdAt": "2024-06-25T18:11:12.684Z"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create User And Wallet user3",
       "request": {
         "method": "POST",
         "header": [
@@ -19,15 +121,10 @@
         "body": {
           "mode": "raw",
           
-          "raw1": {
-            "username":"user3",
-            "password":"test3"
-          },
-          "description": "หากไม่กรอก CryptocurrencyId จะเลือก CryptocurrencyId = 1",
-
-          "raw2": {
-            "username":"user3",
-            "password":"test3",
+        
+          "raw": {
+            "username":"user4",
+            "password":"test4",
             "CryptocurrencyId":2 
           }            
         },
@@ -48,18 +145,19 @@
         {
           "user": {
             "role": "user",
-            "id": 12,
-            "username": "user3",
-            "password": "$2a$10$G8RA8ijDQy2n2NWtKeDXC.Df3uv3FXWrbftllzP3dyv5jAhrfS6mO",
-            "updatedAt": "2024-06-22T10:28:46.204Z",
-            "createdAt": "2024-06-22T10:28:46.204Z"
+            "id": 4,
+            "username": "user4",
+            "password": "$2a$10$EtgDRauSvyNz4ug0tCaWk.vjQjpU58sPBIZqt6luRu12V8f.aPY1m",
+            "updatedAt": "2024-06-25T18:11:36.234Z",
+            "createdAt": "2024-06-25T18:11:36.234Z",
+            "Uid": "9444852348"
           },
           "wallet": {
             "balance": 0,
             "id": 3,
-            "CryptocurrencyId": 1,
-            "updatedAt": "2024-06-22T10:28:46.224Z",
-            "createdAt": "2024-06-22T10:28:46.224Z"
+            "CryptocurrencyId": 2,
+            "updatedAt": "2024-06-25T18:11:36.241Z",
+            "createdAt": "2024-06-25T18:11:36.241Z"
           }
         }
       ]
@@ -77,9 +175,9 @@
         "body": {
           "mode": "raw",
           "raw": {
-            "username":"user3",
-            "password":"test3"
-          }          
+            "username":"admin",
+            "password":"admin"
+          }        
         },
         "url": {
           "raw": "http://localhost:3000/api/login",
@@ -96,7 +194,7 @@
       },
       "response": [
         {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoidXNlcjMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxOTA1MjI1OSwiZXhwIjoxNzE5MDU1ODU5fQ.isrAzq7CwPaF715_rZd0U3URu8BFeiLUYHRbX-t8qVo"
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiVWlkIjoiNDA0MTU5NjQzOSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTkzMzkxNzUsImV4cCI6MTcxOTM0Mjc3NX0.9_F180vVroX7UuCXc8JMCR9EEwberz9WilKolJCNHBg"
         }
       ]
     },
@@ -113,8 +211,8 @@
         "body": {
           "mode": "raw",
           "raw": {
-            "name":"Ethereum",
-            "symbol": "ETH"
+            "name":"BNB",
+            "symbol": "BNB"
           }
         },
         "url": {
@@ -131,12 +229,53 @@
           ]
         }
       },
-      "response": {
-        "id": 2,
-        "name": "Ethereum",
-        "symbol": "ETH",
-        "updatedAt": "2024-06-22T10:36:12.950Z",
-        "createdAt": "2024-06-22T10:36:12.950Z"
+      "response":{
+        "id": 3,
+        "name": "BNB",
+        "symbol": "BNB",
+        "updatedAt": "2024-06-25T18:14:10.073Z",
+        "createdAt": "2024-06-25T18:14:10.073Z"
+      }
+    },
+    {
+      "name": "Update User Balance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value":"admin_token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw":  {
+            "userId":2,
+            "cryptoId":1,
+            "amount":100
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/admin/balance",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "admin",
+            "balance"
+          ]
+        }
+      },
+      "response":{
+        "id": 1,
+        "balance": 100,
+        "createdAt": "2024-06-25T18:10:45.000Z",
+        "updatedAt": "2024-06-25T18:16:27.826Z",
+        "UserId": 2,
+        "CryptocurrencyId": 1
       }
     },
     {
@@ -152,7 +291,48 @@
         "body": {
           "mode": "raw",
           "raw": {
-            "userId":18,
+            "userId":3,
+            "cryptoId":1,
+            "amount":100
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/admin/balance",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "admin",
+            "balance"
+          ]
+        }
+      },
+      "response":{
+        "id": 2,
+        "balance": 100,
+        "createdAt": "2024-06-25T18:11:12.000Z",
+        "updatedAt": "2024-06-25T18:17:57.866Z",
+        "UserId": 3,
+        "CryptocurrencyId": 1
+      }
+    },
+    {
+      "name": "Update User Balance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value":"admin_token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw":  {
+            "userId":4,
             "cryptoId":2,
             "amount":100
           }
@@ -172,11 +352,11 @@
         }
       },
       "response":{
-        "id": 4,
-        "balance": 190,
-        "createdAt": "2024-06-22T11:08:53.000Z",
-        "updatedAt": "2024-06-22T11:44:43.478Z",
-        "UserId": 18,
+        "id": 3,
+        "balance": 100,
+        "createdAt": "2024-06-25T18:11:36.000Z",
+        "updatedAt": "2024-06-25T18:18:25.480Z",
+        "UserId": 4,
         "CryptocurrencyId": 2
       }
     },
@@ -211,7 +391,7 @@
         }
       },
       "response":{
-        "totalBalance": 100.5
+        "totalBalance": 300
       }
     },
     {
@@ -251,9 +431,45 @@
         "CryptocurrencyId": 1,
         "targetSymbol": "ETH",
         "rate": "0.5",
-        "updatedAt": "2024-06-22T10:42:08.072Z",
-        "createdAt": "2024-06-22T10:42:08.072Z"
+        "updatedAt": "2024-06-25T18:21:33.371Z",
+        "createdAt": "2024-06-25T18:21:33.371Z"
       }
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": {
+            "username":"user2",
+            "password":"test2"
+          }     
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": [
+        {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiVWlkIjoiMzc2MzU1MjY4NCIsInVzZXJuYW1lIjoidXNlcjIiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxOTMzOTc1NiwiZXhwIjoxNzE5MzQzMzU2fQ.qAZyN4NbLpFu-eFWmHzn3KYvT2hIkZDkLnKX9TUPTv0"
+        }
+      ]
     },
     {
       "name": " Transfer same cryptocurrency between users",
@@ -268,10 +484,9 @@
         "body": {
           "mode": "raw",
           "raw":{
-            "senderId":10,
-            "receiverId": 11,
+            "receiverId": "Uid of user3 in usertable",
             "cryptoSymbol":"BTC",
-            "amount":"100"
+            "amount":10
           }
         },
         "url": {
@@ -304,10 +519,10 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": {
-            "receiverId": 11,
-            "toCryptoSymbol":"BTC",
-            "amount":100
+          "raw":{
+            "receiverId": "Uid of user4 in usertable",
+            "toCryptoSymbol":"ETH",
+            "amount":10
           }
         },
         "url": {

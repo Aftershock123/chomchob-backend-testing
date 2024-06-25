@@ -1,21 +1,19 @@
-module.exports = (sequelize, DataTypes) => {
-    const Bundle = sequelize.define('Bundle', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      detail: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      }
-    });
-    Bundle.associate = models => {
-      Bundle.hasMany(models.Item, { foreignKey: 'bundleId' });
-    };
+module.exports = (sequelize,Sequelize) => {
+  const Bundle = sequelize.define('Bundle', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    price: {
+      type: Sequelize.FLOAT,
+      allowNull: false
+    }
+  });
     return Bundle;
   };
   
